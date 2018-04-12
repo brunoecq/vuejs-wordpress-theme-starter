@@ -14,7 +14,16 @@ const getters = {
   allPagesLoaded: state => state.loaded,
   pageContent: state => (id) => {
     let page = state.all.filter(page => page.id === id)
-    return !_.isNull(_.first(page).content.rendered) ? _.first(page).content.rendered : false
+    if (page.length != 0) { 
+      return !_.isNull(_.first(page).content.rendered) ? _.first(page).content.rendered : false
+    }
+  },
+  onepage: state => (id) => {
+    let page = state.all.filter(page => page.id == id)
+
+    if (page.length != 0) { 
+      return !_.isNull(_.first(page)) ? _.first(page) : false
+    }
   },
   somePages: state => (limit) => {
     if (state.all.length < 1) { return false }

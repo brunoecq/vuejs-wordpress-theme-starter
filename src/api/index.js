@@ -10,7 +10,8 @@ export default {
   },
 
   getPages (cb) {
-    axios.get(window.SETTINGS.API_BASE_PATH + 'pages?per_page=10')
+    //axios.get(window.SETTINGS.API_BASE_PATH + 'pages?per_page=10')
+    axios.get(window.SETTINGS.API_BASE_PATH + 'pages')
       .then(response => {
         cb(response.data)
       })
@@ -33,7 +34,8 @@ export default {
   getPosts (limit, cb) {
     if (_.isEmpty(limit)) { let limit = 5 }
     
-    axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page='+limit)
+    //axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page='+limit)
+    axios.get(window.SETTINGS.API_BASE_PATH + 'posts')
       .then(response => {
         cb(response.data)
       })

@@ -1,9 +1,16 @@
+window.WEBSITENAME = '';
+
+if (window.location.origin == "http://localhost:8080") 
+{
+  window.WEBSITENAME = '/demo2';
+}
+
 window.SETTINGS = {
   // How many different dispatched actions determine loading progress
   // This is likely determined by how many dispatched actions you have below
   // in the created() method
   LOADING_SEGMENTS: 2,
-  API_BASE_PATH: '/wp-json/wp/v2/'
+  API_BASE_PATH:  window.WEBSITENAME + '/wp-json/wp/v2/'
 }
 
 require('./bootstrap')
@@ -25,6 +32,8 @@ import * as types from './store/mutation-types'
 
 Vue.use(VueLazyload)
 Vue.use(BootstrapVue)
+
+Vue.config.productionTip = false
 
 router.afterEach((to, from) => {
   // Add a body class specific to the route we're viewing

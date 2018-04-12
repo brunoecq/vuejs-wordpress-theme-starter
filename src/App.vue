@@ -11,9 +11,9 @@
 
     <app-header></app-header>
 
-    <transition name="page-transition" mode="out-in" appear>
-      <div class="page-content-wrapper">
-        <router-view></router-view>
+    <transition name="fade" mode="out-in" appear>
+      <div class="page-content-wrapper" :key="$route.params.page_id">
+            <router-view></router-view>
       </div>
     </transition>
 
@@ -25,6 +25,9 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Header from './components/partials/Header'
 import Footer from './components/partials/Footer'
+import Template from './components/partials/Page-Template'
+import Menu from './components/partials/Menu'
+
 
 export default {
   data() {
@@ -45,7 +48,8 @@ export default {
 
   components: {
     appHeader: Header,
-    appFooter: Footer
+    appFooter: Footer,
+    appMenu: Menu
   },
 
   watch: {
@@ -61,6 +65,19 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import './styles/app.scss';
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 </style>
